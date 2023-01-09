@@ -1,7 +1,7 @@
 import Blog from "../model/Blog";
 import validateBlogPost from "../validations/blog_validations";
 export default class BlogServices {
-  static async createBlog(data) {
+  static async createPost(data) {
     const { error, value } = await validateBlogPost(data);
 
     if (error.details.length > 2) {

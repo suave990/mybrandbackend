@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "description": "",
+  "description": "my brand backend..",
   "main": "app.js",
   "scripts": {
     "build": "babel srccd -d dist",
