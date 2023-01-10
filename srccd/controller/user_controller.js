@@ -1,15 +1,16 @@
 import User from "../model/User";
-import { UserServices } from "../services/userService";
+import UserServices from "../services/userService";
 
 export class UserController {
   static async userSignup(req, res) {
     try {
-      const { email, password } = req.body;
+      const {username, email, password } = req.body;
       const data = new User({
+        username: username,
         email: email,
         password: password,
       });
-      const response = await UserServices.userSignup(data);
+      const response = await UserServices.addUser(data);
       if (response !== data && response !== "Email already exists") {
         return res.status(400).json({ response });
       } else if (response == "Email already exists") {
@@ -30,7 +31,7 @@ export class UserController {
         email: email,
         password: password,
       });
-      const response = await UserServices.userLogin(data);
+      const response = await UserServices.login(data);
       if (response == "Unregistered Email") {
         return res.status(400).json({ message: "Unregistered Email" });
       } else if (response == "Password incorrect") {

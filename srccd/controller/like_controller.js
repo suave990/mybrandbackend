@@ -2,7 +2,8 @@ import { LikeServices } from "../services/likeService";
 export default class LikesController {
   static async like(req, res) {
     try {
-      await LikeServices.like(req.params.id);
+      // console.log(req.params.id)
+      await LikeServices.addLike(req.params.id);
       res.status(200).json({ message: "Blog Liked!!" });
     } catch (error) {
       console.log(error);
@@ -11,7 +12,7 @@ export default class LikesController {
   }
   static async dislike(req, res) {
     try {
-      await LikeServices.dislike(req.params.id);
+      await LikeServices.removeLike(req.params.id);
       res.status(200).json({ message: "Blog Unliked!!" });
     } catch (error) {
       console.log(error);

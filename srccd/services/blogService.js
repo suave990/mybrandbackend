@@ -1,4 +1,6 @@
 import Blog from "../model/Blog";
+import mongoose from 'mongoose'
+let ObjectId = mongoose.Types.ObjectId;
 import validateBlogPost from "../validations/blog_validations";
 export default class BlogServices {
   static async createPost(data) {
@@ -16,7 +18,7 @@ export default class BlogServices {
     return blogs;
   }
   static async viewSinglePost(id) {
-    const blog = await Blog.findOne({ _id: id });
+    const blog = await Blog.findById(ObjectId(id));
     return blog;
   }
   static async deletePost(id) {

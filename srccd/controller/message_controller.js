@@ -4,13 +4,13 @@ import { MessageServices } from "../services/messageService";
 export class MessageController {
   static async deliverMessage(req, res) {
     try {
-      const { name, email, description, hiring, message } = req.body;
+      const { name, email, message } = req.body;
       const data = new Message({
         name: name,
         email: email,
         message: message,
       });
-      const response = await MessageServices.deliverMessage(data);
+      const response = await MessageServices.sendMessage(data);
       if (response !== true) {
         return res.status(400).json({ response });
       } else {

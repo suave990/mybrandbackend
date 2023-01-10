@@ -8,7 +8,7 @@ export class CommentController {
         email: email,
         message: message,
       };
-      const response = await CommentServices.postComment(
+      const response = await CommentServices.createComment(
         comment,
         req.params.id
       );

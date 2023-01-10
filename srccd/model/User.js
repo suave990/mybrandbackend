@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 const userLoginSchema = mongoose.Schema({
+  username:String,
   email: String,
   password: String,
 });
