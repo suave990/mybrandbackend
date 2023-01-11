@@ -12,7 +12,7 @@ export class UserController {
       });
       const response = await UserServices.addUser(data);
       if (response !== data && response !== "Email already exists") {
-        return res.status(400).json({ response });
+        return res.status(409).json({ response });
       } else if (response == "Email already exists") {
         return res.status(500).json({ message: response });
       } else {
