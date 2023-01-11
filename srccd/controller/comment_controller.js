@@ -2,10 +2,10 @@ import { CommentServices } from "../services/commentService";
 export class CommentController {
   static async postComment(req, res) {
     try {
-      const { name, email, message } = req.body;
+      const { message } = req.body;
       const comment = {
-        name: name,
-        email: email,
+        name: res.locals.name,
+        email: res.locals.email,
         message: message,
       };
       const response = await CommentServices.createComment(

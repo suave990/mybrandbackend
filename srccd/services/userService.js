@@ -31,7 +31,7 @@ export default class UserServices {
       if (!user) {
         return "Email incorrect";
       } else {
-        let token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+        let token = jwt.sign({ _id: user._id ,email:user.email ,name:user.name}, process.env.TOKEN_SECRET);
         const validPass = await bcrypt.compare(data.password, user.password);
         if (!validPass) {
           return "Password incorrect";
