@@ -2,7 +2,7 @@ import app from "../srccd/app";
 import request from "supertest"
 import Blog from "../srccd/model/Blog";
 import Message from "../srccd/model/Message";
-const TOKEN ="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2MwNDg3MTAwMDEwNTU4NzA0ZDExZDAiLCJlbWFpbCI6InN1YXZlOTkwQGdtYWlsLmNvbSIsImlhdCI6MTY3MzU0OTUxMH0.fVK0EHLQJZjWltPUXCN6CjpL7txUPrxvBXRhYk6zZmw"
+const TOKEN ="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2M5YzcxMjRjNzkwZDA3ZDM4YWM5ZWEiLCJlbWFpbCI6InN1YXZpc0BnbWFpbC5jb20iLCJpYXQiOjE2NzQyNDM4OTl9.ocee-SPsAg7GPOgq4xZ16g3MhsLkwH4mvioa1BZP1x4"
 const num = Math.floor(Math.random() * 10000)
 test("get blog status 200 ", async () => {
     const response = await request(app).get("/blogs").send();
@@ -52,9 +52,8 @@ test("post signup status 200 ", async () => {
 })
 test("post login status 200 ", async () => {
     const response = await request(app).post("/users/login").send(
-        {
-            email: "example@yahoo.com",
-            password: "example123"
+        { email:"suavis@gmail.com",
+        password:"123"
         }
     );
     expect(response.statusCode).toBe(200);

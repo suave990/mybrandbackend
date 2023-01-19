@@ -11,6 +11,7 @@ export default class PostController {
         image: image,
       });
       const response = await BlogServices.createPost(data);
+      console.log(response)
       if (response !== true) {
         return res.status(400).json({ response });
       } else {
@@ -24,7 +25,6 @@ export default class PostController {
 
   static async viewPosts(req, res) {
     try {
-     // console.log(BlogServices)
    const blogs = await BlogServices.viewPosts();
      return res.status(200).json({ blogs });
     } catch (error) {

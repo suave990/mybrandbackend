@@ -5,7 +5,7 @@ const validator = (schema) => (payload) =>
 
 const blogSchema = Joi.object({
   title: Joi.string().min(0).max(40).required(),
-  content: Joi.string().min(1).max(2000).required(),
+  content: Joi.string().min(1).required(),
   image: Joi.string().required(),
 });
 

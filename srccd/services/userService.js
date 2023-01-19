@@ -16,7 +16,9 @@ export default class UserServices {
         const hashedPassword = await bcrypt.hash(data.password, salt);
         data.password = hashedPassword;
         await data.save();
-        return data;
+        let token = jwt.sign({ _id: data._id ,email:data.email ,name:data.name}, process.env.TOKEN_SECRET);
+        
+        return {data,token};
       }
     }
   }
@@ -27,9 +29,8 @@ export default class UserServices {
       return error.details.map((detail) => detail.message);
     } else {
       const user = await User.findOne({ email: data.email });
-      //let token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
       if (!user) {
-        return "Email incorrect";
+        return "Unregistered Email";
       } else {
         let token = jwt.sign({ _id: user._id ,email:user.email ,name:user.name}, process.env.TOKEN_SECRET);
         const validPass = await bcrypt.compare(data.password, user.password);
@@ -40,5 +41,12 @@ export default class UserServices {
         }
       }
     }
+  }
+  static async getUser(data){
+    console.log(data)
+  }
+  static async getall(){
+    let users= await User.find({})
+    return users.map(user=>{return {username:user.username,email:user.email}})
   }
 }

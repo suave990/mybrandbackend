@@ -8,6 +8,7 @@ const authLikeComment = async (req, res, next) => {
       res.status(401).json({ Message: "Please sign in" });
     } else {
       const token = bearerToken.split(" ")[1];
+      
       const verified = jwt.verify(token, process.env.TOKEN_SECRET );
       const userEmail = verified.email;
       const userName = verified.name;

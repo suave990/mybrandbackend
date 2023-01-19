@@ -15,7 +15,7 @@ export class CommentController {
       if (response !== true) {
         res.status(400).json({ response });
       } else {
-        res.status(200).json({ message: "comment added to " + req.params.id });
+        res.status(200).json({ message: "comment added to " + req.params.id,comment:comment});
       }
     } catch (error) {
       console.log(error);
