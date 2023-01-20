@@ -2,11 +2,13 @@ import Blog from "../model/Blog";
 import validateComment from "../validations/comment_validations";
 export class CommentServices {
   static async createComment(data, id) {
-    const { error, value } = validateComment(data);
-    if (error) {
-      return await { error: error.details.map((detail) => detail.message) };
-    }
     const blog = await Blog.findOne({ _id: id });
+    console.log(data.message)
+    //  const { error} = validateComment(data.message);
+    //  if (error.details.length > 1) {
+    //  return { error: error.details}
+    // }
+   
     blog.comments.push(data);
     await blog.save();
     return true;

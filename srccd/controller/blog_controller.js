@@ -9,9 +9,9 @@ export default class PostController {
         title: title,
         content: content,
         image: image,
-        likes: 0,
       });
       const response = await BlogServices.createPost(data);
+      console.log(response)
       if (response !== true) {
         return res.status(400).json({ response });
       } else {
@@ -25,7 +25,6 @@ export default class PostController {
 
   static async viewPosts(req, res) {
     try {
-     // console.log(BlogServices)
    const blogs = await BlogServices.viewPosts();
      return res.status(200).json({ blogs });
     } catch (error) {
@@ -47,7 +46,7 @@ export default class PostController {
   static async deletePost(req, res) {
     try {
       await BlogServices.deletePost(req.params.id);
-      return res.status(200).json({ message: "Blog Deleted" });
+      return res.status(204).json({ message: "Blog Deleted" });
     } catch (error) {
       console.log(error);
       return res.status(404).json({ error: error });

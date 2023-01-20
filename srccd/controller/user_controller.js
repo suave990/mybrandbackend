@@ -10,13 +10,13 @@ export class UserController {
         email: email,
         password: password,
       });
-      const response = await UserServices.addUser(data);
+      const {data:response,token} = await UserServices.addUser(data);
       if (response !== data && response !== "Email already exists") {
         return res.status(409).json({ response });
       } else if (response == "Email already exists") {
         return res.status(500).json({ message: response });
       } else {
-        return res.status(200).json({ data });
+        return res.status(200).json({ data,token });
       }
     } catch (error) {
       console.log(error);
@@ -40,6 +40,35 @@ export class UserController {
         return res.status(200).json({ token: response });
       }
     } catch (error) {
+      console.log(error);
+      return res.status(500).json({ error: error });
+    }
+  }
+  static async userInfo(req,res){
+    try{
+        if(res.locals.email){
+          return  res.status(200).json({email:res.locals.email,name:res.locals.name})
+        }
+        else{
+          return res.status(400).json({ message: "Unregistered Email" });
+        }
+    }
+    catch (error) {
+      console.log(error);
+      return res.status(500).json({ error: error });
+    }
+  }
+  static async users(req,res){
+    try{
+        if(res.locals.email){
+          let response= await UserServices.getall();
+          return res.status(200).json(response)
+        }
+        else{
+          return res.status(400).json({ message: "Unregistered Email" });
+        }
+    }
+    catch (error) {
       console.log(error);
       return res.status(500).json({ error: error });
     }

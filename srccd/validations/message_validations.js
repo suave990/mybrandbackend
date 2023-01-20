@@ -7,7 +7,7 @@ const messageSchema = Joi.object({
   email: Joi.string().email().required(),
   hiring: Joi.boolean().default(false),
   description: Joi.string().min(10).max(50),
-  message: Joi.string().min(25).max(100).required(),
+  message: Joi.string().required(),
 });
 
 const validateMessage = validator(messageSchema);

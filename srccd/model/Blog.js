@@ -4,7 +4,10 @@ const postSchema = mongoose.Schema({
   content: String,
   image: String,
   comments: [{ name: String, message: String, email: String }],
-  likes: Number,
+  likes: {
+    likesNumber: {type: Number, default: 0},
+    user: []
+},
 });
 
 const Blog = mongoose.model("Blog", postSchema);
