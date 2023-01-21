@@ -5,6 +5,7 @@
   "scripts": {
     "build": "babel srccd -d dist",
     "dev": "better-npm-run dev",
+    "start":"babel-node ./srccd/app.js",
     "test": "jest --collect-coverage --forceExit && coveralls < coverage/lcov.info"
   },
   "betterScripts": {
